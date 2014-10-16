@@ -32,8 +32,17 @@ build = {
        libdirs = { "$(PGSQL_LIBDIR)" }
      }
    },
+   platforms = {
+     windows =  {
+       modules = {
+         ["luasql.postgres"] = {
+           libraries = { "libpq" }
+         }
+       }
+     }
+   },
    patches = {
-     ["c90.pathc"] = [===[
+     ["c90.patch"] = [===[
 diff -Naur old/src/ls_postgres.c new/src/ls_postgres.c
 --- old/src/ls_postgres.c	2014-10-15 09:01:24.456543629 +0200
 +++ new/src/ls_postgres.c	2014-10-15 09:03:07.264546601 +0200
